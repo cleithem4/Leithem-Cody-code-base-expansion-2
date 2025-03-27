@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://bium0w0bxcd72"]
+[gd_scene load_steps=71 format=3 uid="uid://bium0w0bxcd72"]
 
 [ext_resource type="Script" path="res://scenes/gameplay/money_manager.gd" id="1_dtds0"]
 [ext_resource type="Script" path="res://scenes/gameplay/buy_item_button.gd" id="1_hqkoi"]
@@ -39,6 +39,7 @@
 [ext_resource type="Texture2D" uid="uid://bdhnjejqigjjx" path="res://sprites/slides/tutorial_overcharge.jpg" id="33_wconf"]
 [ext_resource type="Texture2D" uid="uid://lnqj5571tsu3" path="res://sprites/menus/play_button.svg" id="34_ulfb6"]
 [ext_resource type="AudioStream" uid="uid://jwldgek1j4qu" path="res://sounds/coins.ogg" id="36_lgnq0"]
+[ext_resource type="Texture2D" uid="uid://d2bjm1o2d4b2e" path="res://sprites/items/air-purifier.png" id="36_s2382"]
 [ext_resource type="AudioStream" uid="uid://qledq016vl8d" path="res://sounds/crickets.ogg" id="40_8wgja"]
 [ext_resource type="Script" path="res://scenes/main_menu/music_autoplay.gd" id="40_dc1dr"]
 
@@ -1113,6 +1114,117 @@ text = "factory_description"
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[node name="BuyAirPurifier" type="Button" parent="BottomPanel"]
+layout_mode = 0
+offset_left = 673.0
+offset_top = -116.0
+offset_right = 773.0
+offset_bottom = -21.0
+focus_mode = 0
+theme = SubResource("Theme_ycol2")
+script = ExtResource("1_hqkoi")
+gameplay_item = "res://scenes/gameplay/air_purifier.tscn"
+money_cost = 200
+metadata/_edit_group_ = true
+
+[node name="PowerPlant" type="TextureRect" parent="BottomPanel/BuyAirPurifier"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -40.5
+offset_right = 988.0
+offset_bottom = 983.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("36_s2382")
+
+[node name="Panel" type="Panel" parent="BottomPanel/BuyAirPurifier"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -42.0
+offset_top = -15.0
+offset_right = 42.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b1gbp")
+
+[node name="Money" type="TextureRect" parent="BottomPanel/BuyAirPurifier/Panel"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 8.0
+offset_right = 45.0
+offset_bottom = 39.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_i6plt")
+
+[node name="Label" type="Label" parent="BottomPanel/BuyAirPurifier/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -13.0
+offset_right = 32.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "200"
+
+[node name="ComicDialogue" type="TextureRect" parent="BottomPanel/BuyAirPurifier"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -192.0
+offset_top = -231.0
+offset_right = 60.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+texture = ExtResource("29_uot7e")
+
+[node name="Title" type="Label" parent="BottomPanel/BuyAirPurifier/ComicDialogue"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.215686, 0.223529, 0.137255, 1)
+theme_override_font_sizes/font_size = 19
+text = "Air Purifier
+"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Description" type="Label" parent="BottomPanel/BuyAirPurifier/ComicDialogue"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 49.0
+offset_bottom = 117.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.466667, 0.486275, 0.294118, 1)
+theme_override_font_sizes/font_size = 17
+text = "Lowers pullution but costs energy"
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="Sell" type="AudioStreamPlayer" parent="BottomPanel"]
 stream = ExtResource("36_lgnq0")
 
@@ -1209,6 +1321,9 @@ script = ExtResource("40_dc1dr")
 [connection signal="button_down" from="BottomPanel/BuyFactory" to="BottomPanel/BuyFactory" method="_on_button_down"]
 [connection signal="mouse_entered" from="BottomPanel/BuyFactory" to="BottomPanel/BuyFactory" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="BottomPanel/BuyFactory" to="BottomPanel/BuyFactory" method="_on_mouse_exited"]
+[connection signal="button_down" from="BottomPanel/BuyAirPurifier" to="BottomPanel/BuyAirPurifier" method="_on_button_down"]
+[connection signal="mouse_entered" from="BottomPanel/BuyAirPurifier" to="BottomPanel/BuyAirPurifier" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="BottomPanel/BuyAirPurifier" to="BottomPanel/BuyAirPurifier" method="_on_mouse_exited"]
 [connection signal="pressed" from="Slides/Button" to="Slides" method="_on_button_pressed"]
 [connection signal="finished" from="AudioStreamPlayer" to="AudioStreamPlayer" method="_on_finished"]
 [connection signal="finished" from="AudioStreamPlayerBackground" to="AudioStreamPlayerBackground" method="_on_finished"]
